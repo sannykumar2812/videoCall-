@@ -15,8 +15,8 @@ const App = () => {
     <>
       <StatusBar barStyle={'dark-content'} />
       {/* <IncomingCallScreen /> */}
-      <CallingScreen />
-      {/* <ContactsScreen /> */}
+      {/* <CallingScreen /> */}
+      <ContactsScreen />
 
       </> 
   
