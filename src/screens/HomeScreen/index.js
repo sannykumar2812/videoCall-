@@ -8,8 +8,8 @@ import {
     SafeAreaView
 } from 'react-native'
 
-import CallActionBox from '../../components/CallActionBox'
-import StartMeeting from '../../components/StartMeeting';
+import CallActionBox from '../../components/callActionBox'
+import StartMeeting from '../../components/startMeeting/index.js';
 import { io } from 'socket.io-client';
 import { Camera } from 'expo-camera';
 

@@ -6,18 +6,13 @@ import {
   Text
 } from 'react-native';
 
-import ContactsScreen from './src/screens/ContactsScreen';
-import CallingScreen from './src/screens/CallingScreen';
-import IncomingCallScreen from './src/screens/IncomingCallScreen';
+import Navigation from './src/navigation';
 
 const App = () => {
   return (
     <>
       <StatusBar barStyle={'dark-content'} />
-      {/* <IncomingCallScreen /> */}
-      {/* <CallingScreen /> */}
-      <ContactsScreen />
-
+          <Navigation />
       </> 
   
   );

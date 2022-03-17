@@ -5,9 +5,11 @@ View,
 Text,
 StyleSheet,
 FlatList,
-TextInput
+TextInput,
+Pressable
 }  from 'react-native'
 
+import {useNavigation} from '@react-navigation/core'
 import dummycontact from "../../../assets/data/contact.json"
 
 
@@ -15,11 +17,18 @@ const ContactsScreen = ()=>{
     const [searchTerm, setSearchTerm]=useState('');
     const [filteredContacts,setfilterContacts]=useState(dummycontact)
 
+    const navigation = useNavigation();
+
     useEffect(()=>{
         const newContacts= dummycontact.filter(contact=>
             contact.user_display_name.toLowerCase().includes(searchTerm.toLowerCase()));
             setfilterContacts(newContacts);
     },[searchTerm])
+
+    const callUser = (user)=>{
+        navigation.navigate('CallingScreen', { user })
+    };
+
     return(
         <View style={styles.page}>
             <TextInput
@@ -30,7 +39,11 @@ const ContactsScreen = ()=>{
         <FlatList
         data={filteredContacts}
         renderItem={({item})=>(
-        <Text style={styles.contactName}>{item.user_display_name} </Text>
+            <Pressable 
+            onPress={()=>callUser(item)}
+            >
+                <Text style={styles.contactName}>{item.user_display_name} </Text>
+            </Pressable>
         )}
             ItemSeparatorComponent={()=><View  style={styles.separator} /> }
         />
@@ -48,6 +61,8 @@ const styles = StyleSheet.create({
     },
     page:{
         padding:15,
+        backgroundColor:'white',
+        flex:1
     },
     contactName:{
         fontSize:16,

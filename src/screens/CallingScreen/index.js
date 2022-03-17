@@ -4,19 +4,34 @@ import React from 'react'
 import { 
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    Pressable
 } from 'react-native'
-
-import CallActionBox from '../../components/CallActionBox'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import CallActionBox from '../../components/callActionBox'
+import { useNavigation ,useRoute} from '@react-navigation/core'
 
 const CallingScreen = ()=>{
+    //adding a goback functaionality in calling screen
+    const navigation = useNavigation()
+    const goBack = () => {
+        navigation.pop();
+    };
+// add a fuctionality to show a constacts name in calling screen 
+    const route = useRoute();
+    const user = route?.params.user;
+
+
     return(
         <View  style={styles.page}>
+            <Pressable onPress={goBack} style={styles.backButton}>
+                <Ionicons name="chevron-back" color="white" size={25} />
+            </Pressable>
             <View style={styles.cameraPreview}>
-            <Text style={styles.name}>Sanny</Text>
-            <Text style={styles.phoneNumber}> ringing +91 70 2464 51 06 </Text>
+                <Text style={styles.name}>{user?.user_display_name}</Text>
+                <Text style={styles.phoneNumber}> ringing +91 70 2464 51 06 </Text>
             </View>
-                <CallActionBox />
+            <CallActionBox />
         </View>
 
     )
@@ -56,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     color: 'white',
-    marginTop: 50,
+    marginTop: 30,
     marginBottom: 15,
     },
     phoneNumber: {
@@ -65,7 +80,7 @@ const styles = StyleSheet.create({
     },
     backButton: {
     position: 'absolute',
-    top: 50,
+    top: 40,
     left: 10,
     zIndex: 10,
     },
@@ -75,8 +90,8 @@ const styles = StyleSheet.create({
         flexDirection:'row',
     },
     iconButton:{
-     padding:15,
-     justifyContent:'center'   
+    padding:15,
+    justifyContent:'center'   
     },
     circle: {
         height:70,
